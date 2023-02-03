@@ -1,5 +1,4 @@
 <script>
-	import Counter from './Counter.svelte';
 </script>
 
 <svelte:head>
@@ -7,6 +6,17 @@
 	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
 </svelte:head>
 
-<section>
-	<Counter />
-</section>
+<div class="text-white uppercase mx-auto pt-48 relative z-0">
+	<p class="tracking-[1.5rem] text-1xl font-extralight">
+		PGK-Lang
+	</p>
+	<h1 class="text-9xl">
+		DONT LEAVE ME
+	</h1>
+	<p class="tracking-[1.5rem] text-1xl mt-5 font-extralight">
+		www.dontavious.com
+	</p>
+	<svg class="absolute inset-x-[60%] inset-y-1/4 -z-10 flex jusitfy-center items-center" width="400" height="400">
+		<circle cx="200" cy="200" r="200" stroke-width="3" fill="#e14761"/>
+	</svg> 
+</div>

@@ -3,10 +3,10 @@
 	import "../app.css";
 </script>
 
-<div class="flex flex-col bg-black">
+<div class="overflow-hidden">
 	<Header />
 
-	<main>
+	<main class="flex flex-col">
 		<slot />
 	</main>
 
