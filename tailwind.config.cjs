@@ -2,7 +2,15 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "hot-pink": "#e14761",
+        "bg-black": "#000002"
+      },
+    },
+    fontFamily: {
+      poppins: ["Poppins"]
+    }
   },
   plugins: [],
 }
