@@ -27,8 +27,9 @@
 </div>
 
 <div class="text-white uppercase mx-auto pt-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
-	<input type="text" 
-		id="username" 
+	<input
+	type="text" 
+		id="email" 
 		class="bg-hot-pink border border-hot-pink text-white text-sm rounded-lg focus:bg-hot-pink focus:border-hot-pink block w-full p-2.5 dark:bg-hot-pink dark:border-hot-pink dark:placeholder-white dark:text-white dark:focus:ring-hot-pink dark:focus:border-hot-pink" 
 		placeholder="USERNAME" style="width: 500px; text-align: center;" autocomplete="off" required>
 </div>

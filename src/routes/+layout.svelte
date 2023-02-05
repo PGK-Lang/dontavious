@@ -1,6 +1,16 @@
 <script>
-	import Header from './Header.svelte';
+	import Header from '../lib/components/Header.svelte';
 	import "../app.css";
+
+	import {onMount} from 'svelte'
+	import {auth} from "../lib/firebase/firebase.client"
+
+	// onMount(() => {
+	// 	const unsubscribe = auth.onAuthStateChanged((user) => {
+	// 		console.log(user)
+	// 	})
+	// }
+	// )
 </script>
 
 <div class="overflow-hidden">
