@@ -6,14 +6,12 @@
 	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
 </svelte:head>
 
-
-
 <div class="text-white uppercase mx-auto pt-16 pb-[3%] relative z-0 flex flex-col items-center justify-center">
 	<h1 class="tracking-[1.5rem] text-5xl text-center pb-[20%]">
-        LOGIN
+        login
 	</h1>
-    <p class="text-1xl text-center">
-        DONT HAVE AN ACCOUNT? <a href="http://localhost:5173/CreateAccount" class="text-button"> CREATE ONE</a>
+    <p class="text-1xl text-center uppercase">
+        don't have an account? <a href="/login/signup" class="text-button">sign up!</a>
     </p>
 </div>
 
