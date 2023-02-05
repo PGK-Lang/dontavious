@@ -1,10 +1,7 @@
 <script>
-	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
 </script>
 
-<header class="flex bg-hot-pink h-16 w-screen">
+<header class="flex bg-hot-pink h-16 w-screen min-w-[375px]">
 	
 	<div class="m-2 flex flex-row justify-between w-full">
 		<h1 class="font-poppins align-middle font-extrabold m-1 text-4xl text-white">
