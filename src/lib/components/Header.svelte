@@ -9,7 +9,7 @@
 				DONT		
 			</h1>
 		</a>
-		<a href="/login">
+		<a href="/Login">
 			<h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
 				LOG IN		
 			</h2>
