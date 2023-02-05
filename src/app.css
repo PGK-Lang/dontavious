@@ -9,3 +9,29 @@
   }
 
 }
+
+/* creates style for the placeholder input text */
+input::placeholder { 
+  font-weight: bold;
+  font-size: medium;
+  opacity: 0.5;
+  color: white;
+}
+/* creates style for the input text */
+input[type="text"] {
+    font-weight: bold;
+    font-size:18px;
+    opacity: 1.0;
+    color: white;
+}
+/* creates style for the input password dots */
+input[type="password"] {
+  font-weight: bold;
+  font-size:18px;
+  opacity: 1.0;
+  color: white;
+}
+
+.text-button{
+  color: hotpink;
+}
