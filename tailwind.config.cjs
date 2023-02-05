@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "hot-pink": "#e14761",
+        "hot-pink-hover": "#e76c81",
         "bg-black": "#000002"
       },
     },
