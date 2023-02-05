@@ -11,7 +11,7 @@
         login
 	</h1>
     <p class="text-1xl text-center uppercase">
-        don't have an account? <a href="/login/signup" class="text-button">sign up!</a>
+        don't have an account? <a href="/Login/signup" class="text-button">sign up!</a>
     </p>
 </div>
 
@@ -32,8 +32,8 @@
 
 
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
-	<a href="http://localhost:5173/">
-		<button class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 px-4 rounded-full align-center px-20">
+	<a href="/">
+		<button class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">LOGIN</h1>
 		</button>
 	</a>	
