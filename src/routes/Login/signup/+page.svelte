@@ -1,4 +1,9 @@
 <script>
+// @ts-nocheck
+
+    import { authHandlers } from "$lib/firebase/firebase.client";
+
+
 </script>
 
 <svelte:head>
@@ -6,12 +11,12 @@
 	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
 </svelte:head>
 
-<div class="text-white uppercase mx-auto pt-16 pb-[5%] relative z-0 flex flex-col items-center justify-center">
+<div class="text-white uppercase mx-auto pt-16 pb-[2%] relative z-0 flex flex-col items-center justify-center">
 	<h1 class="tracking-[1.5rem] text-5xl text-center">
         CREATE ACCOUNT
 	</h1>
 </div>
-
+<form class="bg-black rounded px-8 pt-6 pb-8 mb-4">
 <div class="text-white uppercase mx-auto pt-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
 	<input type="text" 
 		id="first_name" 
@@ -49,10 +54,11 @@
 </div>
 
 
-<div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
+<div class="text-white uppercase mx-auto pt-[4%] pb-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
 	<a href="http://localhost:5173/">
-		<button class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 px-4 rounded-full align-center px-20">
+		<button type="submit" on:click={authHandlers.signup("hello", "world")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">NEXT</h1>
 		</button>
 	</a>	
 </div>
+</form>

@@ -43,6 +43,7 @@ export const authHandlers = {
   },
   signup: async (email, password) => {
       await createUserWithEmailAndPassword(auth, email, password)
+      //TODO: Write to DB
   },
   logout: async () => {
       await signOut(auth)
