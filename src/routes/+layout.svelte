@@ -4,6 +4,7 @@
 
 	import {onMount} from 'svelte'
 	import {auth} from "../lib/firebase/firebase.client"
+    import { signInWithCredential } from 'firebase/auth';
 
 	// onMount(() => {
 	// 	const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -15,7 +16,7 @@
 
 <div class="overflow-hidden">
 	<Header />
-
+	
 	<main class="flex flex-col">
 		<slot />
 	</main>
