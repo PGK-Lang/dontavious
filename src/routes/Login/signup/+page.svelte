@@ -17,6 +17,7 @@
 	</h1>
 </div>
 <!-- Make form -->
+<form class="bg-black rounded px-8 pt-6 pb-8 mb-4">
 <div class="text-white uppercase mx-auto pt-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
 	<input type="text" 
 		id="first_name" 
@@ -56,8 +57,9 @@
 
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
 	<a href="http://localhost:5173/">
-		<button on:click={authHandlers.signup("hello", "world")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 px-4 rounded-full align-center px-20">
+		<button type="submit" on:click={authHandlers.signup("hello", "world")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">NEXT</h1>
 		</button>
 	</a>	
 </div>
+</form>
