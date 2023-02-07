@@ -1,6 +1,8 @@
 import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { Firestore, getFirestore, collection, doc } from 'firebase/firestore';
 import { writable } from "svelte/store";
+import {getDatabase, set, ref } from 'firebase/database';
+
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -12,6 +14,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 const firebaseConfig = {
   apiKey: "AIzaSyDQAs2V9sSXKdmpKwEjd5h4xO9So_Qx43c",
   authDomain: "dontavious-backend.firebaseapp.com",
+  databaseURL: "https://dontavious-backend-default-rtdb.firebaseio.com",
   projectId: "dontavious-backend",
   storageBucket: "dontavious-backend.appspot.com",
   messagingSenderId: "85240366776",
@@ -29,21 +32,28 @@ if (!getApps().length) {
   app = initializeApp(firebaseConfig)
 }
 
-export const db = getFirestore(app);
+export const db = getDatabase(app);
 export const auth = getAuth(app);
 
 export const authStore = writable({
   isLoading: true,
   currentUser: null
 })
-
+export const readHandlers = {}
 export const authHandlers = {
   login: async (email, password) => {
       await signInWithEmailAndPassword(auth, email, password)
   },
-  signup: async (email, password) => {
-      await createUserWithEmailAndPassword(auth, email, password)
-      //TODO: Write to DB
+  signup: async (_email, _password, _username) => {
+      await createUserWithEmailAndPassword(auth, _email, _password);
+      const user = auth.currentUser;
+      set(ref(db, 'users/' + _username), {
+        username: _username,
+        email: _email,
+        uid : user?.uid
+      });
+      
+
   },
   logout: async () => {
       await signOut(auth)
@@ -70,4 +80,6 @@ export const authHandlers = {
       await updatePassword(auth.currentUser, password)
   }
 }
+
+
 
