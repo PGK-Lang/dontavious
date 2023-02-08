@@ -15,7 +15,7 @@ let password = ''
         login
 	</h1>
     <p class="text-1xl text-center uppercase">
-        don't have an account? <a href="/Login/signup" class="text-button">sign up!</a>
+        don't have an account? <a href="/login/signup" class="text-button">sign up!</a>
     </p>
 </div>
 
@@ -33,7 +33,6 @@ let password = ''
 		class="bg-hot-pink border border-hot-pink text-white text-sm rounded-lg focus:bg-hot-pink focus:border-hot-pink block w-full p-2.5 dark:bg-hot-pink dark:border-hot-pink dark:placeholder-white dark:text-white dark:focus:ring-hot-pink dark:focus:border-hot-pink" 
 		placeholder="PASSWORD" style="width: 500px; text-align: center;" autocomplete="off" required>
 </div>
-
 
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
 	<a href="/">

@@ -56,7 +56,7 @@
 
 <div class="text-white uppercase mx-auto pt-[4%] pb-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
 	<a href="http://localhost:5173/">
-		<button type="submit" on:click={authHandlers.signup("hello", "world")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button type="submit" on:click={authHandlers.signup("banana@gmail.com", "helloworld", "helloworlld")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">NEXT</h1>
 		</button>
 	</a>	
