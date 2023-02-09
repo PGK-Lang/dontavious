@@ -31,8 +31,7 @@
 
 
 <!-- Password -->
-<InputBox  output={password} type="password" id="password" placeholder="PASSWORD"/>
-
+<InputBox output={password} type="password" id="password" placeholder="PASSWORD"/>
 
 <!-- alerts -->
 <div class="text-white uppercase mx-auto pt-1 relative z-0 flex flex-col items-center justify-center">
@@ -42,7 +41,7 @@
 
 <!-- Login Button -->
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
-		<button on:click={() => authHandlers.login()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button on:click={() => authHandlers.login(email, password)} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">LOGIN</h1>
 		</button>	
 </div>
