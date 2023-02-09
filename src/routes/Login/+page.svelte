@@ -19,7 +19,7 @@
 	</h1>
 	<!-- link to sign up -->
     <p class="text-1xl text-center uppercase">
-        don't have an account? <a href="/Login/signup" class="text-button">sign up!</a>
+        don't have an account? <a href="/login/signup" class="text-button">sign up!</a>
     </p>
 </div>
 
