@@ -31,14 +31,34 @@
 
 <!-- Password -->
 <InputBox type="password" id="password" placeholder="PASSWORD" />
-</form>
+
+
+<!-- alerts -->
+<div class="text-white uppercase mx-auto pt-1 relative z-0 flex flex-col items-center justify-center">
+	<p id="incomplete" class="text-1xl text-center uppercase"></p>
+</div>
 
 
 <!-- Login Button -->
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
-	<a href="/">
-		<button class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">LOGIN</h1>
-		</button>
-	</a>	
+		</button>	
 </div>
+<script>
+	function Validate() {
+		var email = document.getElementById("email").value;
+		var password = document.getElementById("password").value; 
+		
+		var incomplete = document.getElementById("incomplete");
+
+		if(email == "" || password == "")  {   
+			incomplete.innerHTML =  "Fields not all filled!!";
+		} else {
+			incomplete.innerHTML =  "";
+			location.href = '/';
+	}  
+}  
+document.getElementById("login").addEventListener("click", Validate);
+</script>
+</form>

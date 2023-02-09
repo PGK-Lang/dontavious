@@ -43,12 +43,43 @@
 <InputBox type="password" id="confirm_password" placeholder="CONFIRM PASSWORD" />
 
 
+<!-- alerts -->
+<div class="text-white uppercase mx-auto pt-1 relative z-0 flex flex-col items-center justify-center">
+	<p id="password_alert" class="text-1xl text-center uppercase"></p>
+	<p id="incomplete" class="text-1xl text-center uppercase"></p>
+</div>
+
+
 <!-- 'next' button -->
 <div class="text-white uppercase mx-auto pt-[4%] pb-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
-	<a href="http://localhost:5173/">
-		<button type="submit" on:click={authHandlers.signup("banana@gmail.com", "helloworld", "helloworlld")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+	<!--<a href="http://localhost:5173/">-->
+		<button id="next" type="submit" on:click={authHandlers.signup("banana@gmail.com", "helloworld", "helloworlld")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">NEXT</h1>
 		</button>
-	</a>	
+	<!--</a>	-->
 </div>
+<script>
+	// validates if password is same as confirm password and if all fields are filled
+	function Validate() {  
+	var first_name = document.getElementById("first_name").value;  
+	var last_name = document.getElementById("last_name").value;
+	var email = document.getElementById("email").value;
+	var password = document.getElementById("password").value;  
+	var confirm_password = document.getElementById("confirm_password").value;
+
+	var password_alert = document.getElementById("password_alert");  
+	var incomplete = document.getElementById("incomplete");  
+
+	if(password != confirm_password)  {   
+		password_alert.innerHTML =  "Passwords do not match!!";
+	} else if(first_name == "" || last_name == "" || email == "" || password == "" || confirm_password == "")  {
+		incomplete.innerHTML =  "Fields not all filled!!";
+	} else {
+		password_alert.innerHTML =  "";
+		incomplete.innerHTML =  "";
+		location.href = '/';
+	}  
+}  
+document.getElementById("next").addEventListener("click", Validate);
+</script>
 </form>
