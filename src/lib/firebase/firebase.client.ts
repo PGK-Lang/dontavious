@@ -1,7 +1,7 @@
 import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
 import { Firestore, getFirestore, collection, doc } from 'firebase/firestore';
 import { writable } from "svelte/store";
-import {getDatabase, set, ref } from 'firebase/database';
+import {getDatabase, set, ref, get } from 'firebase/database';
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword } from 'firebase/auth';
 
@@ -39,18 +39,32 @@ export const authStore = writable({
   isLoading: true,
   currentUser: null
 })
-export const readHandlers = {}
+export const readHandlers = {
+  readGeneralData: async (){
+    const dbRef = ref(getDatabase());
+    const _uid = auth.currentUser?.uid;
+    get(ref(db,'users/' + _uid)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+}
 export const authHandlers = {
   login: async (email, password) => {
       await signInWithEmailAndPassword(auth, email, password)
   },
   signup: async (_email, _password, _username) => {
       await createUserWithEmailAndPassword(auth, _email, _password);
-      const user = auth.currentUser;
-      set(ref(db, 'users/' + _username), {
+      const _uid = auth.currentUser?.uid;
+      set(ref(db, 'users/' + _uid), {
         username: _username,
         email: _email,
-        uid : user?.uid
+        uid : _uid
       });
       
 
