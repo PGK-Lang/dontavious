@@ -79,6 +79,9 @@
 		incomplete.innerHTML =  "";
 		location.href = '/';
 	}  
+	function getVal(id){
+		return document.getElementById(id).value;
+	}
 }  
 document.getElementById("next").addEventListener("click", Validate);
 </script>
