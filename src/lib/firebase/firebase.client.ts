@@ -12,14 +12,14 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDQAs2V9sSXKdmpKwEjd5h4xO9So_Qx43c",
-  authDomain: "dontavious-backend.firebaseapp.com",
-  databaseURL: "https://dontavious-backend-default-rtdb.firebaseio.com",
-  projectId: "dontavious-backend",
-  storageBucket: "dontavious-backend.appspot.com",
-  messagingSenderId: "85240366776",
-  appId: "1:85240366776:web:294e31127a3409d462564d",
-  measurementId: "G-4VNZ84XJJM"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  databaseURL: import.meta.env.VITE_DATABASEURL,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSENGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
+  measurementId: import.meta.env.VITE_MEASUREMENTID
 };
 
 // Initialize Firebase
@@ -39,21 +39,21 @@ export const authStore = writable({
   isLoading: true,
   currentUser: null
 })
-export const readHandlers = {
-  readGeneralData: async (){
-    const dbRef = ref(getDatabase());
-    const _uid = auth.currentUser?.uid;
-    get(ref(db,'users/' + _uid)).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(snapshot.val());
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
-}
+// export const readHandlers = {
+//   readGeneralData: async (){
+//     const dbRef = ref(getDatabase());
+//     const _uid = auth.currentUser?.uid;
+//     get(ref(db,'users/' + _uid)).then((snapshot) => {
+//       if (snapshot.exists()) {
+//         console.log(snapshot.val());
+//       } else {
+//         console.log("No data available");
+//       }
+//     }).catch((error) => {
+//       console.error(error);
+//     });
+//   }
+// }
 export const authHandlers = {
   login: async (email, password) => {
       await signInWithEmailAndPassword(auth, email, password)
