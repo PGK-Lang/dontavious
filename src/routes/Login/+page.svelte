@@ -1,6 +1,7 @@
 <script>
 	import InputBox from "$lib/components/InputBox.svelte";
-	import { authHandlers } from "../../lib/firebase/firebase.client"
+    import { onValue } from "firebase/database";
+	import { authHandlers, readHandlers } from "../../lib/firebase/firebase.client"
 
 	let email = ''
 	let password = ''
@@ -26,11 +27,11 @@
 
 <form class="bg-black rounded px-8 pt-6 pb-8 mb-4">
 <!-- Email -->
-<InputBox type="text" id="email" placeholder="EMAIL" />
+<InputBox output={email} type="text" id="email" placeholder="EMAIL" />
 
 
 <!-- Password -->
-<InputBox type="password" id="password" placeholder="PASSWORD" />
+<InputBox  output={password} type="password" id="password" placeholder="PASSWORD"/>
 
 
 <!-- alerts -->
@@ -41,7 +42,7 @@
 
 <!-- Login Button -->
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
-		<button id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button on:click={() => authHandlers.login()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">LOGIN</h1>
 		</button>	
 </div>
