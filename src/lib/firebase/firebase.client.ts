@@ -39,21 +39,21 @@ export const authStore = writable({
   isLoading: true,
   currentUser: null
 })
-// export const readHandlers = {
-//   readGeneralData: async (){
-//     const dbRef = ref(getDatabase());
-//     const _uid = auth.currentUser?.uid;
-//     get(ref(db,'users/' + _uid)).then((snapshot) => {
-//       if (snapshot.exists()) {
-//         console.log(snapshot.val());
-//       } else {
-//         console.log("No data available");
-//       }
-//     }).catch((error) => {
-//       console.error(error);
-//     });
-//   }
-// }
+export const readHandlers = {
+  readGeneralData: async () => {
+    const dbRef = ref(getDatabase());
+    const _uid = auth.currentUser?.uid;
+    get(ref(db,'users/' + _uid)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+}
 export const authHandlers = {
   login: async (email, password) => {
       await signInWithEmailAndPassword(auth, email, password)
