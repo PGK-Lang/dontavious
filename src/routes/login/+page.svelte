@@ -38,7 +38,7 @@
 
 <!-- Login Button -->
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
-		<button on:click={() => authHandlers.login(document.getElementById("email").value, document.getElementById("password").value)} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button on:click={() => console.log("x")} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">LOGIN</h1>
 		</button>	
 </div>
@@ -53,7 +53,7 @@
 			incomplete.innerHTML =  "Fields not all filled!!";
 		} else {
 			incomplete.innerHTML =  "";
-			location.href = '/';
+			//location.href = '/';
 	}  
 }  
 document.getElementById("login").addEventListener("click", Validate);
