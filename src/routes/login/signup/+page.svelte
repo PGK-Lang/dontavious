@@ -4,11 +4,6 @@
 	import { authHandlers } from "$lib/firebase/firebase.client";
 </script>
 
-<svelte:head>
-	<title>Don't Leave Me</title>
-	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
-</svelte:head>
-
 
 <!-- create account page title -->
 <div class="text-white uppercase mx-auto pt-16 pb-[2%] relative z-0 flex flex-col items-center justify-center">
@@ -75,7 +70,7 @@
 	} else {
 		password_alert.innerHTML =  "";
 		incomplete.innerHTML =  "";
-		location.href = '/';
+		location.href = '/profile/create';
 	}  
 	function getVal(id){
 		return document.getElementById(id).value;
