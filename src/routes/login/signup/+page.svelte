@@ -1,7 +1,7 @@
 <script>
 // @ts-nocheck
 	import InputBox from "$lib/components/InputBox.svelte";
-    import { authHandlers } from "$lib/firebase/firebase.client";
+	import { authHandlers } from "$lib/firebase/firebase.client";
 </script>
 
 
