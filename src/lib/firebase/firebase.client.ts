@@ -26,10 +26,12 @@ const firebaseConfig = {
 let app;
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
+  console.log('created');
 } else {
   app = getApp();
   deleteApp(app);
-  app = initializeApp(firebaseConfig)
+  app = initializeApp(firebaseConfig);
+  console.log("destroyed");
 }
 
 export const db = getDatabase(app);
@@ -56,18 +58,22 @@ export const readHandlers = {
 }
 export const authHandlers = {
   login: async (email, password) => {
-      await signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password);
   },
   signup: async (_email, _password, _username) => {
       await createUserWithEmailAndPassword(auth, _email, _password);
-      const _uid = auth.currentUser?.uid;
-      set(ref(db, 'users/' + _uid), {
-        username: _username,
-        email: _email,
-        uid : _uid
-      });
-      
-
+      try{
+        const _uid = auth.currentUser?.uid;
+        set(ref(db, 'users/' + _uid), {
+          username: _username,
+          email: _email,
+          uid : _uid
+        });
+        console.log("written");
+      }
+      catch(e){
+        console.log(e)
+      }
   },
   logout: async () => {
       await signOut(auth)

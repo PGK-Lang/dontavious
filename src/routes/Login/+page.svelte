@@ -3,6 +3,7 @@
 	import { onValue } from "firebase/database";
 	import { authHandlers, readHandlers } from "../../lib/firebase/firebase.client"
 	import { base } from "$app/paths";
+    import { get_custom_elements_slots } from "svelte/internal";
 
 	let email = ''
 	let password = ''
@@ -28,11 +29,11 @@
 
 <form class="bg-black rounded px-8 pt-6 pb-8 mb-4">
 <!-- Email -->
-<InputBox output={email} type="text" id="email" placeholder="EMAIL" />
+<InputBox type="text" id="email" placeholder="EMAIL" />
 
 
 <!-- Password -->
-<InputBox output={password} type="password" id="password" placeholder="PASSWORD"/>
+<InputBox type="password" id="password" placeholder="PASSWORD"/>
 
 <!-- alerts -->
 <div class="text-white uppercase mx-auto pt-1 relative z-0 flex flex-col items-center justify-center">
@@ -42,7 +43,7 @@
 
 <!-- Login Button -->
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
-		<button on:click={() => authHandlers.login(email, password)} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button on:click={() => authHandlers.login(document.getElementById("email").value, document.getElementById("password").value)} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">LOGIN</h1>
 		</button>	
 </div>
