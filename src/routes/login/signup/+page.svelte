@@ -4,11 +4,6 @@
     import { authHandlers } from "$lib/firebase/firebase.client";
 </script>
 
-<svelte:head>
-	<title>Don't Leave Me</title>
-	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
-</svelte:head>
-
 
 <!-- create account page title -->
 <div class="text-white uppercase mx-auto pt-16 pb-[2%] relative z-0 flex flex-col items-center justify-center">
@@ -52,11 +47,9 @@
 
 <!-- 'next' button -->
 <div class="text-white uppercase mx-auto pt-[4%] pb-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
-	<!--<a href="http://localhost:5173/">-->
 		<button id="next" type="submit" on:click={authHandlers.signup("firebase@gmail.com", "helloworld", "helloworlld")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">NEXT</h1>
 		</button>
-	<!--</a>	-->
 </div>
 <script>
 	// validates if password is same as confirm password and if all fields are filled
@@ -77,7 +70,7 @@
 	} else {
 		password_alert.innerHTML =  "";
 		incomplete.innerHTML =  "";
-		location.href = '/';
+		location.href = '/profile/create';
 	}  
 	function getVal(id){
 		return document.getElementById(id).value;

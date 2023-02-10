@@ -7,11 +7,6 @@
 	let password = ''
 </script>
 
-<svelte:head>
-	<title>Don't Leave Me</title>
-	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
-</svelte:head>
-
 
 <!-- create account page title -->
 <div class="text-white uppercase mx-auto pt-16 pb-[3%] relative z-0 flex flex-col items-center justify-center">
@@ -27,11 +22,11 @@
 
 <form class="bg-black rounded px-8 pt-6 pb-8 mb-4">
 <!-- Email -->
-<InputBox output={email} type="text" id="email" placeholder="EMAIL" />
+<InputBox type="text" id="email" placeholder="EMAIL" />
 
 
 <!-- Password -->
-<InputBox output={password} type="password" id="password" placeholder="PASSWORD"/>
+<InputBox type="password" id="password" placeholder="PASSWORD"/>
 
 <!-- alerts -->
 <div class="text-white uppercase mx-auto pt-1 relative z-0 flex flex-col items-center justify-center">
