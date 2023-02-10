@@ -1,7 +1,8 @@
 <script>
 	import InputBox from "$lib/components/InputBox.svelte";
-    import { onValue } from "firebase/database";
+	import { onValue } from "firebase/database";
 	import { authHandlers, readHandlers } from "../../lib/firebase/firebase.client"
+	import { base } from "$app/paths";
 
 	let email = ''
 	let password = ''
@@ -20,7 +21,7 @@
 	</h1>
 	<!-- link to sign up -->
     <p class="text-1xl text-center uppercase">
-        don't have an account? <a href="/login/signup" class="text-button">sign up!</a>
+        don't have an account? <a href="{base}/login/signup" class="text-button">sign up!</a>
     </p>
 </div>
 
