@@ -9,11 +9,6 @@
 	let password = ''
 </script>
 
-<svelte:head>
-	<title>Don't Leave Me</title>
-	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
-</svelte:head>
-
 
 <!-- create account page title -->
 <div class="text-white uppercase mx-auto pt-16 pb-[3%] relative z-0 flex flex-col items-center justify-center">
@@ -22,7 +17,7 @@
 	</h1>
 	<!-- link to sign up -->
     <p class="text-1xl text-center uppercase">
-        don't have an account? <a href="{base}/login/signup" class="text-button">sign up!</a>
+        don't have an account? <a href="/login/signup" class="text-button">sign up!</a>
     </p>
 </div>
 
