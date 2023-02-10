@@ -1,0 +1,3 @@
+<svg class="absolute inset-x-[60%] inset-y-1/4 -z-10 flex jusitfy-center items-center" >
+		<circle cx="200" cy="200" r="200" stroke-width="3" fill="#e14761"/>
+	</svg> 
