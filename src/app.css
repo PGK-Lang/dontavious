@@ -11,14 +11,15 @@
 }
 
 /* creates style for the placeholder input text */
-input::placeholder { 
+textarea::placeholder, input::placeholder { 
   font-weight: bold;
   font-size: medium;
   opacity: 0.5;
   color: white;
 }
+
 /* creates style for the input text */
-input[type="text"] {
+textarea, input[type="text"] {
     font-weight: bold;
     font-size:18px;
     opacity: 1.0;
