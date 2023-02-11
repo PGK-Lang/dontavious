@@ -1,7 +1,9 @@
 <script>
+// @ts-nocheck
+
 	import InputBox from "$lib/components/InputBox.svelte";
 	import { onValue } from "firebase/database";
-	import { authHandlers, readHandlers } from "../../lib/firebase/firebase.client"
+	import { auth, authHandlers, readHandlers } from "../../lib/firebase/firebase.client"
 	import { base } from "$app/paths";
     import { get_custom_elements_slots } from "svelte/internal";
 
@@ -38,9 +40,12 @@
 
 <!-- Login Button -->
 <div class="text-white uppercase mx-auto pt-[5%] pb-[5%] px-80 relative z-0 flex flex-col items-center justify-center">
-		<button on:click={() => console.log("x")} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button on:click={() => authHandlers.login(document.getElementById("email").value, document.getElementById("password").value) && console.log('x')} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">LOGIN</h1>
 		</button>	
+		<button on:click={() => authHandlers.logout()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+			<h1 class=" text-3xl text-center">logout</h1>
+		</button>
 </div>
 <script>
 	function Validate() {

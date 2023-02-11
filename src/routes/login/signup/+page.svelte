@@ -52,7 +52,7 @@
 
 <!-- 'next' button -->
 <div class="text-white uppercase mx-auto pt-[4%] pb-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
-		<button id="next" type="button" on:click={() => authHandlers.signup(document.getElementById("email").value, document.getElementById("password").value, document.getElementById("first_name").value+document.getElementById("last_name").value)}
+		<button id="next" type="button" on:click={() => authHandlers.signup(document.getElementById("email").value, document.getElementById("password").value, document.getElementById("first_name").value+" "+document.getElementById("last_name").value)}
 		class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">NEXT</h1>
 		</button>
