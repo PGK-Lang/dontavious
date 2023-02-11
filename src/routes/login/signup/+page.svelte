@@ -76,7 +76,10 @@
 	} else {
 		password_alert.innerHTML =  "";
 		incomplete.innerHTML =  "";
-		location.href = '/'';
+		setTimeout(function() {
+			location.href = '/profile';
+		}, 1000);
+		
 	}  
 	function getVal(id){
 		return document.getElementById(id).value;
