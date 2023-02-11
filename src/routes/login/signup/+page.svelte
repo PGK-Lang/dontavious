@@ -4,6 +4,11 @@
 	import { authHandlers } from "$lib/firebase/firebase.client";
 </script>
 
+<svelte:head>
+	<title>Don't Leave Me</title>
+	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
+</svelte:head>
+
 
 <!-- create account page title -->
 <div class="text-white uppercase mx-auto pt-16 pb-[2%] relative z-0 flex flex-col items-center justify-center">
@@ -47,7 +52,8 @@
 
 <!-- 'next' button -->
 <div class="text-white uppercase mx-auto pt-[4%] pb-[1%] px-80 relative z-0 flex flex-col items-center justify-center">
-		<button id="next" type="submit" on:click={authHandlers.signup("firebase@gmail.com", "helloworld", "helloworlld")} class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+		<button id="next" type="button" on:click={() => authHandlers.signup(document.getElementById("email").value, document.getElementById("password").value, document.getElementById("first_name").value+document.getElementById("last_name").value)}
+		class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
 			<h1 class=" text-3xl text-center">NEXT</h1>
 		</button>
 </div>
@@ -70,7 +76,7 @@
 	} else {
 		password_alert.innerHTML =  "";
 		incomplete.innerHTML =  "";
-		location.href = '/profile/create';
+		location.href = '/'';
 	}  
 	function getVal(id){
 		return document.getElementById(id).value;
