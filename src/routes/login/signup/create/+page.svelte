@@ -51,24 +51,14 @@
       </label>
       <input class="appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
     </div>
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide  text-xs font-bold mb-2" for="grid-state">
-        Favorite class
-      </label>
-      <div class="relative">
-        <select class="text-black font-semibold block appearance-none w-full bg-gray-200 border border-gray-200  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-          <option>9</option>
-          <option>10</option>
-          <option>11</option>
-          <option>12</option>
-        </select>
-      </div>
-    </div>
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide  text-xs font-bold mb-2" for="grid-zip">
         Favorite teacher
       </label>
       <input class="appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
     </div>
   </div>
+  <button on:click={() => console.log("bum ahh jit")} class="bg-black text-hot-pink rounded-lg w-1/6 h-12 uppercase text-2xl font-semibold ">
+		create
+	</button>
 </form>
