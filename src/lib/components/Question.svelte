@@ -1,4 +1,5 @@
 <script>
+    import './personality.css';
   let score = {
     EI: 0,
     SN: 0,
@@ -18,6 +19,9 @@
 
     return `${EI}${SN}${TF}${JP}`;
   }
+  export let handleAnswer ='handleAnswer'
+
+	export let getPersonality = "getPersonality";
 </script>
 
 <h1>Personality Test</h1>
@@ -86,10 +90,6 @@
 <p>Your personality type is: {getPersonality()}</p>
 
 </script>
-<script>
-import './personality.css';
-</script>
-
 
 
 

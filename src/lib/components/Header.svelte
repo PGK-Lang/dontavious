@@ -14,6 +14,11 @@
                 DONT        
             </h1>
         </a>
+        
+        <a href="/login/personality-test">
+            <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
+                Personality-Test     
+            </h2>
 
     {#if $user}
         {#await promise }
@@ -46,14 +51,7 @@
         <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
             LOG IN      
         </h2>
-    </a>
-    
-    <a href="/login/personality-test">
-        <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
-            Personality-test     
-        </h2>
-
-        
+    </a> 
     </div>
 
 </header>
