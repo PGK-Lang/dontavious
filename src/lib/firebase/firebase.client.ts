@@ -1,7 +1,7 @@
 import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
 import { Firestore, getFirestore, collection, doc } from 'firebase/firestore';
 import { writable } from "svelte/store";
-import {getDatabase, set, ref, get } from 'firebase/database';
+import { getDatabase, set, ref, get } from 'firebase/database';
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword } from 'firebase/auth';
 
@@ -37,18 +37,19 @@ if (!getApps().length) {
 export const db = getDatabase(app);
 export const auth = getAuth(app);
 
+console.log(ref(db, 'users/' + "S3pQ1wk89sVXBkMvDfaKlx1m2rQ2"));
+
 export const authStore = writable({
   isLoading: true,
   currentUser: null
 })
 export const readHandlers = {
   readUserName: async () => {
-
-    const dbRef = ref(getDatabase());
     const _uid = auth.currentUser?.uid;
-    let ret = ""
-    get(ref(db,'users/' + _uid)).then((snapshot) => {
+    let ret = "" // 
+    get(ref(db, 'users/' + _uid)).then((snapshot) => {
       if (snapshot.exists()) {
+        console.log(ret);
         return ret = snapshot.val().username;
       } else {
         console.log("No data");
@@ -63,48 +64,48 @@ export const readHandlers = {
 }
 export const authHandlers = {
   login: async (_email, _password) => {
-      await signInWithEmailAndPassword(auth, _email, _password);
-      console.log("done");
-      readHandlers.readUserName();
+    await signInWithEmailAndPassword(auth, _email, _password);
+    console.log("done");
+    readHandlers.readUserName();
   },
   signup: async (_email, _password, _username) => {
-      await createUserWithEmailAndPassword(auth, _email, _password);
-      try{
-        const _uid = auth.currentUser?.uid;
-        set(ref(db, 'users/' + _uid), {
-          username: _username,
-          email: _email,
-          uid : _uid
-        });
-        console.log("written");
-      }
-      catch(e){
-        console.log(e)
-      }
+    await createUserWithEmailAndPassword(auth, _email, _password);
+    try {
+      const _uid = auth.currentUser?.uid;
+      set(ref(db, 'users/' + _uid), {
+        username: _username,
+        email: _email,
+        uid: _uid
+      });
+      console.log("written");
+    }
+    catch (e) {
+      console.log(e)
+    }
   },
   logout: async () => {
-      await signOut(auth)
+    await signOut(auth)
   },
   resetPassword: async (email) => {
-      console.log('WE ARE HERE', email)
-      if (!email) {
-          console.log('inHERE')
-          return
-      }
-      await sendPasswordResetEmail(auth, email)
+    console.log('WE ARE HERE', email)
+    if (!email) {
+      console.log('inHERE')
+      return
+    }
+    await sendPasswordResetEmail(auth, email)
   },
   updateEmail: async (email) => {
-      authStore.update(curr => {
-          return {
-              ...curr, currentUser: {
-                  ...curr.currentUser, email: email
-              }
-          }
-      })
-      await updateEmail(auth.currentUser, email)
+    authStore.update(curr => {
+      return {
+        ...curr, currentUser: {
+          ...curr.currentUser, email: email
+        }
+      }
+    })
+    await updateEmail(auth.currentUser, email)
   },
   updatePassword: async (password) => {
-      await updatePassword(auth.currentUser, password)
+    await updatePassword(auth.currentUser, password)
   }
 }
 
