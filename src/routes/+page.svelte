@@ -7,7 +7,7 @@
 	<meta name="description" content="Don't Leave Me (Dontavious): Exclusive dating app for high schoolers by high schoolers" />
 </svelte:head>
 
-<div class="text-white uppercase ml-4 sm:mx-auto relative z-0 pt-48 sm:scale-100 min-w-[376px]">
+<div class="text-white uppercase sm:mx-auto relative z-0 pt-48 sm:scale-100 min-w-[376px]">
 	<p class="tracking-[.5rem] text-1xl font-extralight">
 		PGK-Lang
 	</p>

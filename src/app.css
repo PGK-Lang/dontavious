@@ -3,36 +3,20 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+@layer base {
   body {
-    @apply bg-[#000002] flex min-h-screen min-w-full w-screen;
+    @apply bg-[#000002] flex min-h-screen min-w-full w-screen text-white;
   }
 
 }
 
-/* creates style for the placeholder input text */
-textarea::placeholder, input::placeholder { 
-  font-weight: bold;
-  font-size: medium;
-  opacity: 0.5;
-  color: white;
-}
+@layer components {
+  .signup-container {
+    @apply bg-hot-pink mt-16 w-[48rem] h-[48rem] mx-auto my-auto rounded-full
+    flex flex-col justify-center items-center;
+  }
 
-/* creates style for the input text */
-textarea, input[type="text"] {
-    font-weight: bold;
-    font-size:18px;
-    opacity: 1.0;
-    color: white;
-}
-/* creates style for the input password dots */
-input[type="password"] {
-  font-weight: bold;
-  font-size:18px;
-  opacity: 1.0;
-  color: white;
-}
-
-.text-button{
-  color: hotpink;
+  .input {
+    @apply w-1/2 placeholder:italic placeholder:text-left text-left rounded-md text-black placeholder:font-medium text-base focus:outline-none p-3
+  }
 }
