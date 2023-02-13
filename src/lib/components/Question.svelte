@@ -1,5 +1,7 @@
 <script>
+    
     <script>
+    import ./personality.css;
   let score = {
     EI: 0,
     SN: 0,
@@ -86,5 +88,7 @@
 
 <p>Your personality type is: {getPersonality()}</p>
 
+import './personality.css';
 </script>
+
 

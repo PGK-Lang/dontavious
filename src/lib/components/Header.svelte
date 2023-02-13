@@ -48,6 +48,10 @@
         </h2>
     </a>
     {/if}
+    <a href="/login/personality-test">
+        <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
+            Personality-test     
+        </h2>
 
         
     </div>
