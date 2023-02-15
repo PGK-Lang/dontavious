@@ -12,7 +12,7 @@
 		SIGN UP
 	</h1>
 	<p class="font-base">
-		Already have an account? <a class="text-black font-semibold underline" href="/login/signup">Log in!</a>
+		Already have an account? <a class="text-black font-semibold underline" href="/login">Log in!</a>
 	</p>
 	<InputBox placeholder="email..." value={email}/>
 	<InputBox placeholder="username..." value={username}/>
