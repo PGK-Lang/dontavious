@@ -3,7 +3,7 @@ import { Firestore, getFirestore, collection, doc } from 'firebase/firestore';
 import { writable } from "svelte/store";
 import { getDatabase, set, ref, get } from 'firebase/database';
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -70,6 +70,7 @@ export const authHandlers = {
   },
   signup: async (_email, _password, _username) => {
     await createUserWithEmailAndPassword(auth, _email, _password);
+    authHandlers.updateDisplayName(_username);
     try {
       const _uid = auth.currentUser?.uid;
       set(ref(db, 'users/' + _uid), {
@@ -82,6 +83,7 @@ export const authHandlers = {
     catch (e) {
       console.log(e)
     }
+    console.log(auth.currentUser?.displayName);
   },
   logout: async () => {
     await signOut(auth)
@@ -106,8 +108,10 @@ export const authHandlers = {
   },
   updatePassword: async (password) => {
     await updatePassword(auth.currentUser, password)
+  },
+  updateDisplayName: async (_username) => {
+    updateProfile(auth.currentUser, {
+      displayName: _username
+    });
   }
 }
-
-
-
