@@ -1,4 +1,6 @@
 <script>
+    import { authHandlers } from "$lib/firebase/firebase.client";
+
 </script>
 
 <!-- Title -->
@@ -71,7 +73,7 @@
     
     <!-- logout -->
     <a href="/">
-        <button id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+        <button on:click = {() => authHandlers.logout()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
             <h1 class=" text-3xl text-center">logout</h1>
         </button>
     </a>

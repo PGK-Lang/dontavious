@@ -13,31 +13,16 @@
             </h1>
         </a>
     {#if $user}
-        {#await promise }
         <a href="/login">
             <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
                 LOG IN
             </h2>
         </a>
+        <a href="/profile">
             <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
-                Loading
-            </h2>
-        {:then uname}
-        <a href="/login">
-            <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
-                LOG IN
+                Welcome {$user.displayName}!
             </h2>
         </a>
-            <a href="/profile">
-                <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
-                    Welcome {uname}!
-                </h2>
-            </a>
-        {:catch error }
-            <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-red">
-                ERROR {error}
-            </h2>
-        {/await}
     {:else}
     <a href="/login">
         <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
