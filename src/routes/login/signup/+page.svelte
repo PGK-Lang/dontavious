@@ -14,9 +14,9 @@
 	<p class="font-base">
 		Already have an account? <a class="text-black font-semibold underline" href="/login/signup">Log in!</a>
 	</p>
-	<InputBox placeholder="email..." value={email}/>
-	<InputBox placeholder="username..." value={username}/>
-	<InputBox placeholder="password..." value={pwd}/>
+	<InputBox placeholder="email..." bind:value={email}/>
+	<InputBox placeholder="username..." bind:value={username}/>
+	<InputBox placeholder="password..." bind:value={pwd}/>
 	
 	<button on:click={() => authHandlers.signup(email, pwd, username)} class="bg-black text-hot-pink rounded-lg w-1/6 h-12 uppercase text-2xl font-semibold ">
 		Next

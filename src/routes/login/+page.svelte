@@ -13,8 +13,8 @@
 	<p class="font-base">
 		Don't have an account? <a class="text-black font-semibold underline" href="/login/signup">Sign up!</a>
 	</p>
-	<InputBox placeholder="email..." value={email}/>
-	<InputBox placeholder="password..." value={pwd}/>
+	<InputBox placeholder="email..." bind:value={email}/>
+	<InputBox placeholder="password..." bind:value={pwd}/>
 	
 	<button on:click={() => authHandlers.login(email, pwd)} class="bg-black text-hot-pink rounded-lg w-1/6 h-12 uppercase text-2xl font-semibold">
 		log in
