@@ -64,19 +64,19 @@
     
     
     <!-- Location -->
-    <div class="text-white uppercase mx-auto pt-16 pb-[5%] relative z-0 flex flex-col items-center justify-center">
-        <h1 class=" text-5xl text-center">
-        (Insert Map Here)
-        </h1>
+    <div class="text-white uppercase mx-auto pt-0 pb-[0%] relative z-0 flex flex-col items-center justify-center">
     </div>
     
     
     <!-- logout -->
-    <a href="/">
-        <button on:click = {() => authHandlers.logout()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
-            <h1 class=" text-3xl text-center">logout</h1>
-        </button>
-    </a>
+    <div class="text-white uppercase mx-auto pt-16 pb-[5%] relative z-0 flex flex-col items-center justify-center">
+        <a href="/">
+            <button on:click = {() => authHandlers.logout()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
+                <h1 class=" text-3xl text-center">logout</h1>
+            </button>
+        </a>
+    </div>
+    
     
     <script>
         // validates if password is same as confirm password and if all fields are filled
