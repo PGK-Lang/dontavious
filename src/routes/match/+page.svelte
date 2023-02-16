@@ -15,8 +15,8 @@ let matches = [];
 <form>
     <!-- Columns -->
     <div id="columns" class="columns-3">
-            <Match image="/spongebob.png" name="spongebob"/>
-            <Match image="/sexy-patrick.jpg" name="patrick"/>   
-            <Match image="/sexy-squidward.jpg" name="squidward"/>   
+            <Match image="/spongebob.png" name="spongebob" URL="/profile"/>
+            <Match image="/sexy-patrick.jpg" name="patrick" URL="/profile"/>   
+            <Match image="/sexy-squidward.jpg" name="squidward" URL="/profile"/>   
     </div>
 </form>

@@ -15,7 +15,7 @@
 		DONT LEAVE ME
 	</h1>
 	<p class="tracking-[.5rem] sm:tracking-[1.5rem] text-1xl mt-4 font-extralight">
-		www.dontavious.com
+		dontavious.vercel.app
 	</p>
 	<svg class="absolute inset-x-[60%] inset-y-1/4 -z-10 flex jusitfy-center items-center" width="400" height="400">
 		<circle cx="200" cy="200" r="200" stroke-width="3" fill="#e14761"/>
