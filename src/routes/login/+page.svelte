@@ -16,7 +16,7 @@
 	<InputBox placeholder="email..." bind:value={email}/>
 	<InputBox placeholder="password..." bind:value={pwd}/>
 	<a href="/profile">
-		<button on:click={() => authHandlers.login(email, pwd) } class="bg-black text-hot-pink rounded-lg w-1/6 h-12 uppercase text-2xl font-semibold">
+		<button on:click={() => authHandlers.login(email, pwd) } class="bg-black text-hot-pink rounded-lg w-1/6 h-12 uppercase text-2xl font-semibold w-24">
 			log in
 		</button>
 	</a>
