@@ -13,11 +13,6 @@
             </h1>
         </a>
     {#if $user}
-        <a href="/login">
-            <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
-                LOG IN
-            </h2>
-        </a>
         <a href="/profile">
             <h2 class="font-poppins align-middle font-bold m-2 text-2xl text-white">
                 Welcome {$user.displayName}!
