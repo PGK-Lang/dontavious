@@ -47,20 +47,8 @@ export const readHandlers = {
   readUserName: async () => {
     const _uid = auth.currentUser?.uid;
     let ret = "" // 
-    get(ref(db, 'users/' + _uid)).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(ret);
-        return ret = snapshot.val().username;
-      } else {
-        console.log("No data");
-        return 'why';
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-    console.log("ret: " + ret);
-    return ret;
-  },
+    return get(ref(db, 'users/' + _uid+'/personality'))
+  }
 }
 export const authHandlers = {
   login: async (_email, _password) => {

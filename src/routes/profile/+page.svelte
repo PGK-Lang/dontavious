@@ -3,8 +3,9 @@
     import { FirebaseApp, userStore } from "sveltefire";
     const user = userStore(auth);
     let usr = () => readHandlers.readUserName();
-    let what = (value:string) => {document.getElementById("mad").innerHTML = value;} 
-    
+    let what = (value:string) => {document.getElementById("mad")!.innerHTML = "booboo";} 
+
+
 </script>
 
 <!-- Title -->
@@ -34,7 +35,7 @@
                 {#await usr}
 	            <p>...waiting</p>
                 {:then func}
-	            <p id="mad">{func().then(val => what(val))}</p>
+	            <p id="mad">{func().then(snapshot => what("bananas"))}</p>
                 {:catch error}
 	            <p style="color: red">{error.message}</p>
                 {/await}
