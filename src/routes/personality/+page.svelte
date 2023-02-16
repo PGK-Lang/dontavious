@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { auth, authHandlers } from '../../lib/firebase/firebase.client';
 	import Question from '../../lib/components/Question.svelte';
 
 	let values = {
@@ -61,9 +62,12 @@
 	}
   
 	function handleSubmit(event) {
-	  event.preventDefault();
 	  const personalityType = getPersonalityType();
-	  alert(`Your personality type is: ${personalityType}`);
+	  console.log(personalityType);
+	  authHandlers.setInfoFor(personalityType);
+	  let message = "Your personality type is " + personalityType;
+	  alert(message);
+
 	}
   </script>
   
@@ -80,7 +84,7 @@
 	  <Question question="8. Do you prioritize stability and routine or flexibility and variety?" answer1="Stability & Routine" answer2="Flexibility and Variety" bind:value={values.q8}/>
 	  <Question question="9. Do you make decisions based on facts and objective information or based on personal values and beliefs?" answer1="Facts and Objective Information" answer2="Personal Values & Beliefs" bind:value={values.q9}/>
 	  <Question question="10. Do you prefer to have a clear structure and plan for your future or keep your options open and adapt as you go?" answer1="Clear Structure/Plan" answer2="Open Options/Adapt" bind:value={values.q10}/>
-	  <button type="submit">Submit</button>
+	  <button on:click = {() => handleSubmit()} type="submit">Submit</button>
   </form> 
   
 

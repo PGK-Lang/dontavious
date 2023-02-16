@@ -1,7 +1,7 @@
 import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
 import { Firestore, getFirestore, collection, doc } from 'firebase/firestore';
 import { writable } from "svelte/store";
-import { getDatabase, set, ref, get } from 'firebase/database';
+import { getDatabase, set, ref, get, update } from 'firebase/database';
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 
@@ -76,7 +76,8 @@ export const authHandlers = {
       set(ref(db, 'users/' + _uid), {
         username: _username,
         email: _email,
-        uid: _uid
+        uid: _uid,
+        personality : ""
       });
       console.log("written");
     }
@@ -113,5 +114,15 @@ export const authHandlers = {
     updateProfile(auth.currentUser, {
       displayName: _username
     });
+  },
+  setInfoFor: async (_value) => {
+    try {
+      const _uid = auth.currentUser?.uid;
+      update(ref(db, 'users/' + this.uid+ this.personality), _value);
+      console.log("written");
+    }
+    catch (e) {
+      console.log(e)
+    }
   }
 }
