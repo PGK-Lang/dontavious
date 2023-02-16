@@ -3,7 +3,7 @@
     import { FirebaseApp, userStore } from "sveltefire";
     const user = userStore(auth);
     let usr = () => readHandlers.readUserName();
-    let what = (value:string) => {document.getElementById("mad")!.innerHTML = "booboo";} 
+    let what = (value:string) => {getElementById("mad")!.innerHTML = "booboo";} 
 
 
 </script>
