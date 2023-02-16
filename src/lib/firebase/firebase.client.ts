@@ -46,8 +46,11 @@ export const authStore = writable({
 export const readHandlers = {
   readUserName: async () => {
     const _uid = auth.currentUser?.uid;
-    let ret = "" // 
-    return get(ref(db, 'users/' + _uid+'/personality'))
+    let ret = "" 
+    await get(ref(db, 'users/' + _uid)).then(snapshot => ret = snapshot.val())
+    console.log("ret " + ret)
+    console.log("uid " + _uid)
+    return ret
   }
 }
 export const authHandlers = {

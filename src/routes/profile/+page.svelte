@@ -1,10 +1,9 @@
 <script lang=ts>
     import { auth, db, authHandlers, readHandlers } from "$lib/firebase/firebase.client";
+    import { snapshotEqual } from "firebase/firestore";
     import { FirebaseApp, userStore } from "sveltefire";
     const user = userStore(auth);
-    let usr = () => readHandlers.readUserName();
-    let what = (value:string) => {getElementById("mad")!.innerHTML = "booboo";} 
-
+    let usr = readHandlers.readUserName()
 
 </script>
 
@@ -34,8 +33,8 @@
             <h1 class=" text-3xl text-left uppercase">
                 {#await usr}
 	            <p>...waiting</p>
-                {:then func}
-	            <p id="mad">{func().then(snapshot => what("bananas"))}</p>
+                {:then string}
+                    <button on:click={() => console.log(typeof(string))}>{string}</button>
                 {:catch error}
 	            <p style="color: red">{error.message}</p>
                 {/await}
