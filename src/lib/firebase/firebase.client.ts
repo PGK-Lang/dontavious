@@ -63,12 +63,12 @@ export const readHandlers = {
   },
 }
 export const authHandlers = {
-  login: async (_email, _password) => {
+  login: async (_email: string, _password: string) => {
     await signInWithEmailAndPassword(auth, _email, _password);
     console.log("done");
     readHandlers.readUserName();
   },
-  signup: async (_email, _password, _username) => {
+  signup: async (_email: string, _password: string, _username: string) => {
     await createUserWithEmailAndPassword(auth, _email, _password);
     authHandlers.updateDisplayName(_username);
     try {
@@ -77,7 +77,7 @@ export const authHandlers = {
         username: _username,
         email: _email,
         uid: _uid,
-        personality : ""
+        personality: ""
       });
       console.log("written");
     }
@@ -89,7 +89,7 @@ export const authHandlers = {
   logout: async () => {
     await signOut(auth)
   },
-  resetPassword: async (email) => {
+  resetPassword: async (email: string) => {
     console.log('WE ARE HERE', email)
     if (!email) {
       console.log('inHERE')
@@ -97,7 +97,7 @@ export const authHandlers = {
     }
     await sendPasswordResetEmail(auth, email)
   },
-  updateEmail: async (email) => {
+  updateEmail: async (email: string) => {
     authStore.update(curr => {
       return {
         ...curr, currentUser: {
@@ -107,22 +107,29 @@ export const authHandlers = {
     })
     await updateEmail(auth.currentUser, email)
   },
-  updatePassword: async (password) => {
+  updatePassword: async (password: string) => {
     await updatePassword(auth.currentUser, password)
   },
-  updateDisplayName: async (_username) => {
+  updateDisplayName: async (_username: string) => {
     updateProfile(auth.currentUser, {
       displayName: _username
     });
   },
-  setInfoFor: async (_value) => {
+  setInfoFor: async (_value: string) => {
     try {
       const _uid = auth.currentUser?.uid;
-      update(ref(db, 'users/' + this.uid+ this.personality), _value);
+      update(ref(db, 'users/' + this.uid + this.personality), _value);
       console.log("written");
     }
     catch (e) {
       console.log(e)
     }
   }
+}
+
+export function writePersonalityData(userId: string, personalityType: string) {
+  const db = getDatabase();
+  set(ref(db, 'users/' + userId), {
+    personality_type: personalityType,
+  });
 }
