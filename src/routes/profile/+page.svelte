@@ -1,6 +1,10 @@
-<script>
-    import { authHandlers } from "$lib/firebase/firebase.client";
-
+<script lang=ts>
+    import { auth, db, authHandlers, readHandlers } from "$lib/firebase/firebase.client";
+    import { FirebaseApp, userStore } from "sveltefire";
+    const user = userStore(auth);
+    let usr = () => readHandlers.readUserName();
+    let what = (value:string) => {document.getElementById("mad").innerHTML = value;} 
+    
 </script>
 
 <!-- Title -->
@@ -9,7 +13,6 @@
         VIEW PROFILE
 	</h1>
 </div>
-
 
 <form>
     <!-- Columns -->
@@ -21,14 +24,20 @@
         <!-- Name -->
         <div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
             <h1 class=" text-4xl text-left uppercase">
-                <b>Spongebob Squarepants</b>
+                <b>{$user?.displayName}</b>
             </h1>
         </div>
 
         <!-- Age -->
         <div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
             <h1 class=" text-3xl text-left uppercase">
-                26
+                {#await usr}
+	            <p>...waiting</p>
+                {:then func}
+	            <p id="mad">{func().then(val => what(val))}</p>
+                {:catch error}
+	            <p style="color: red">{error.message}</p>
+                {/await}
             </h1>
         </div>
 
