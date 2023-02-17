@@ -1,7 +1,7 @@
 import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
 import { Firestore, getFirestore, collection, doc } from 'firebase/firestore';
 import { writable } from "svelte/store";
-import { getDatabase, set, ref, get, update } from 'firebase/database';
+import { getDatabase, set, ref, get, update, push } from 'firebase/database';
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 
@@ -46,12 +46,23 @@ export const authStore = writable({
 export const readHandlers = {
   readUserName: async () => {
     const _uid = auth.currentUser?.uid;
-    let ret = "" 
+    let ret = ""
     await get(ref(db, 'users/' + _uid)).then(snapshot => ret = snapshot.val())
-    console.log("ret " + ret)
-    console.log("uid " + _uid)
+    console.log("ret 1 " + ret)
     return ret
-  }
+  },
+  read: async () => {
+    let ret = await readHandlers.readUserName().then(w => console.log(w));
+    console.log("ret 2 " + ret)
+    return ret
+  },
+  getProfile: async () => {
+    const _uid = auth.currentUser?.uid;
+    let ret = ""
+    await get(ref(db, 'users/' + _uid)).then(snapshot => ret = snapshot.val())
+    console.log("ret 1 " + ret)
+    return ret
+  },
 }
 export const authHandlers = {
   login: async (_email: string, _password: string) => {
@@ -115,6 +126,16 @@ export const authHandlers = {
     catch (e) {
       console.log(e)
     }
+  },
+  setProfile: async (_bio:string, _likes:Array<string>, _pronoms:string ) => {
+    // Create a new post reference with an auto-generated id
+    const db = getDatabase();
+    const postListRef = ref(db, 'users/'+auth.currentUser?.uid+'/vitals');
+    set(postListRef, {
+      bio : _bio,
+      likes : _likes,
+      pronouns : _pronoms
+    });
   }
 }
 

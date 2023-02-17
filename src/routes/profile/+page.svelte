@@ -1,9 +1,10 @@
 <script lang=ts>
     import { auth, db, authHandlers, readHandlers } from "$lib/firebase/firebase.client";
+    import { updateCurrentUser } from "firebase/auth";
     import { snapshotEqual } from "firebase/firestore";
     import { FirebaseApp, userStore } from "sveltefire";
     const user = userStore(auth);
-    let usr = readHandlers.readUserName()
+    let usr = readHandlers.read()
 
 </script>
 
@@ -34,7 +35,11 @@
                 {#await usr}
 	            <p>...waiting</p>
                 {:then string}
-                    <button on:click={() => console.log(typeof(string))}>{string}</button>
+                    {#if $user}
+                    <button on:click={() => console.log("d")}>{string}</button>
+                    {:else}
+                        <p>sorry</p>
+                     {/if}   
                 {:catch error}
 	            <p style="color: red">{error.message}</p>
                 {/await}
