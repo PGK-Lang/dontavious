@@ -44,17 +44,17 @@
 		const answers = Object.values(values);
 		const count = (value: string) => answers.filter((v) => v === value).length;
 		const result = [
-			count("Yes") > 3 ? "E" : "I",
-			count("Intuition") > 3 ? "N" : "S",
-			count("Values and emotions") > 3 ? "F" : "T",
-			count("Planned and Organized") > 3 ? "J" : "P",
-			count("Present Moment") > 3 ? "S" : "A",
-			count("Taking risks") > 3 ? "P" : "C",
-			count("Big Picture") > 3 ? "N" : "D",
-			count("Stability & Routine") > 3 ? "J" : "P",
-			count("A few close friends") > 3 ? "I" : "E",
-			count("Make decisions quickly") > 3 ? "A" : "C",
-			count("In control") > 3 ? "J" : "P",
+			count("Yes") > 5 ? "E" : "I",
+			count("Intuition") > 5 ? "N" : "S",
+			count("Values and emotions") > 5 ? "F" : "T",
+			count("Planned and Organized") > 5 ? "J" : "P",
+			count("Present Moment") > 5 ? "S" : "A",
+			count("Taking risks") > 5 ? "P" : "C",
+			count("Big Picture") > 5 ? "N" : "D",
+			count("Stability & Routine") > 5 ? "J" : "P",
+			count("A few close friends") > 5 ? "I" : "E",
+			count("Make decisions quickly") > 5 ? "A" : "C",
+			count("In control") > 5 ? "J" : "P",
 		].join("");
 
 		const possibleTypes = personalityTypes.filter((type) =>
@@ -84,7 +84,7 @@ function handleSubmit() {
 	<form>
 		<on:submit|preventDefault={handleSubmit}>
 			<Question
-				question="3. Do you enjoy being around people and are energized by social interaction?"
+				question="1. Do you enjoy being around people and are energized by social interaction?"
 				answer1="Yes"
 				answer2="No"
 				bind:value={values.q1}
