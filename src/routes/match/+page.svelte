@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Match from "$lib/components/Match.svelte";
 
 let matches = [];

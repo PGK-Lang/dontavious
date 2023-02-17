@@ -87,7 +87,7 @@
     </div>
     
     
-    <script>
+    <script lang="ts">
         // validates if password is same as confirm password and if all fields are filled
         function Validate() {  
             location.href = '/profile';

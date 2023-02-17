@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let question;
   export let answer1;
   export let answer2;

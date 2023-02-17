@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     export let image = "image"
     export let name = "name"
     export let URL = "URL"

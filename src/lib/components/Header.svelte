@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { base } from "$app/paths";
     import { userStore } from 'sveltefire';
     import { auth, readHandlers } from "../firebase/firebase.client";

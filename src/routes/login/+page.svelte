@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { authHandlers } from '$lib/firebase/firebase.client';
 	import InputBox from '$lib/components/InputBox.svelte';
 

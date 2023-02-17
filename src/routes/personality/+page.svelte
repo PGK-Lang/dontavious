@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
 	import {
 		auth,
@@ -42,7 +42,7 @@
 
 	function getPersonalityType() {
 		const answers = Object.values(values);
-		const count = (value) => answers.filter((v) => v === value).length;
+		const count = (value: string) => answers.filter((v) => v === value).length;
 		const result = [
 			count("Yes") > 1 ? "E" : "I",
 			count("Intuition") > 1 ? "N" : "S",
@@ -64,13 +64,13 @@
 		return possibleTypes[randomIndex].name;
 	}
 
-	function handleAnswer(questionId, optionValue) {
+	function handleAnswer(questionId: string, optionValue: string) {
 		values = { ...values, [questionId]: optionValue };
 	}
 
 	const user = userStore(auth);
 
-	function handleSubmit(event) {
+	function handleSubmit() {
 		const personalityType = getPersonalityType();
 		console.log(personalityType);
 		authHandlers.setInfoFor(personalityType);
