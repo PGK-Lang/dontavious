@@ -44,17 +44,17 @@
 		const answers = Object.values(values);
 		const count = (value: string) => answers.filter((v) => v === value).length;
 		const result = [
-			count("Yes") > 1 ? "E" : "I",
-			count("Intuition") > 1 ? "N" : "S",
-			count("Values and emotions") > 1 ? "F" : "T",
-			count("Planned and Organized") > 1 ? "J" : "P",
-			count("Present Moment") > 1 ? "S" : "A",
-			count("Taking risks") > 1 ? "P" : "C",
-			count("Big Picture") > 1 ? "N" : "D",
-			count("Stability & Routine") > 1 ? "J" : "P",
-			count("A few close friends") > 1 ? "I" : "E",
-			count("Make decisions quickly") > 1 ? "A" : "C",
-			count("In control") > 1 ? "J" : "P",
+			count("Yes") > 3 ? "E" : "I",
+			count("Intuition") > 3 ? "N" : "S",
+			count("Values and emotions") > 3 ? "F" : "T",
+			count("Planned and Organized") > 3 ? "J" : "P",
+			count("Present Moment") > 3 ? "S" : "A",
+			count("Taking risks") > 3 ? "P" : "C",
+			count("Big Picture") > 3 ? "N" : "D",
+			count("Stability & Routine") > 3 ? "J" : "P",
+			count("A few close friends") > 3 ? "I" : "E",
+			count("Make decisions quickly") > 3 ? "A" : "C",
+			count("In control") > 3 ? "J" : "P",
 		].join("");
 
 		const possibleTypes = personalityTypes.filter((type) =>
@@ -65,18 +65,18 @@
 	}
 
 	function handleAnswer(questionId: string, optionValue: string) {
-		values = { ...values, [questionId]: optionValue };
-	}
+  setValues({ ...values, [questionId]: optionValue });
+}
 
-	const user = userStore(auth);
+const user = userStore(auth);
 
-	function handleSubmit() {
-		const personalityType = getPersonalityType();
-		console.log(personalityType);
-		authHandlers.setInfoFor(personalityType);
-		let message = "Your personality type is " + personalityType;
-		alert(message);
-		writePersonalityData($user.uid, personalityType)
+function handleSubmit() {
+  const personalityType = getPersonalityType();
+  console.log(personalityType);
+  authHandlers.setInfoFor(personalityType);
+  const message = "Your personality type is " + personalityType;
+  alert(message);
+  writePersonalityData(user.uid, personalityType);
 	}
 </script>
 
@@ -84,7 +84,7 @@
 	<form>
 		<on:submit|preventDefault={handleSubmit}>
 			<Question
-				question="1. Do you enjoy being around people and are energized by social interaction?"
+				question="3. Do you enjoy being around people and are energized by social interaction?"
 				answer1="Yes"
 				answer2="No"
 				bind:value={values.q1}
