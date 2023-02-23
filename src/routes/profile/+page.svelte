@@ -3,18 +3,23 @@
     import { updateCurrentUser } from "firebase/auth";
     import { snapshotEqual } from "firebase/firestore";
     import { FirebaseApp, userStore } from "sveltefire";
+    import Switch from "../../lib/components/Switch.svelte"
+    import ProfileInput from "../../lib/components/ProfileInput.svelte"
     const user = userStore(auth);
     let usr = readHandlers.read()
-
+    let switchVal:boolean;
+    let sumero = (str) => {
+        console.log(str);
+        return str;
+    }
 </script>
 
 <!-- Edit Page -->
+
+
 <div class="text-white uppercase mx-auto pt-12 relative z-0 flex flex-col items-right justify-right ml-auto mr-[5%]">
-    <label class="relative inline-flex items-right cursor-pointer">
-        <input type="checkbox" value="" class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-hot-pink peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-hot-pink peer-checked:bg-hot-pink-hover"></div>
-        <span class="ml-3 text-1x1 font-medium dark:text-white"><b>EDIT PAGE</b></span>
-    </label>
+    <Switch bind:value={switchVal} label="Edit Page" design="inner" />
+    <p> {sumero(switchVal)}</p>
 </div>
 
 
@@ -34,9 +39,7 @@
 
         <!-- Name -->
         <div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
-            <h1 class=" text-4xl text-left uppercase">
-                <b>{$user?.displayName}</b>
-            </h1>
+            <ProfileInput placeholder="Hello there" value={$user?.displayName} state={!switchVal} />
         </div>
 
         <!-- Age -->
