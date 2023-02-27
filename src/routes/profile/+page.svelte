@@ -6,10 +6,12 @@
     import Switch from "../../lib/components/Switch.svelte"
     import ProfileInput from "../../lib/components/ProfileInput.svelte"
     const user = userStore(auth);
-    let usr = readHandlers.read()
+    let age = readHandlers.readAge()
+    let pronouns = readHandlers.readPronouns();
+    let like = readHandlers.readHobby();
+    let biography = readHandlers.readBio();
     let switchVal:boolean;
     let sumero = (str) => {
-        console.log(str);
         return str;
     }
 </script>
@@ -30,7 +32,7 @@
 	</h1>
 </div>
 
-<form>
+
     <!-- Columns -->
     <div class="columns-3">
 
@@ -38,18 +40,18 @@
       <div class="max-w-sm rounded overflow-hidden align-middle row-auto">
 
         <!-- Name -->
-        <div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
-            <ProfileInput placeholder="Hello there" value={$user?.displayName} state={!switchVal} />
+        <div>
+            <ProfileInput placeholder="Name" value={$user?.displayName} state={switchVal} />
         </div>
 
         <!-- Age -->
-        <div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
-            <h1 class=" text-3xl text-left uppercase">
-                {#await usr}
+        <div>
+            <h1>
+                {#await age}
 	            <p>...waiting</p>
                 {:then string}
                     {#if $user}
-                    <button on:click={() => console.log("d")}>{string}</button>
+                    <ProfileInput placeholder="Age" value={string} state={switchVal} />
                     {:else}
                         <p>sorry</p>
                      {/if}   
@@ -60,20 +62,39 @@
         </div>
 
         <!-- Pronouns -->
-        <div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
-            <h1 class=" text-3xl text-left uppercase">
-                he/him
+        <div>
+            <h1>
+                {#await pronouns}
+	            <p>...waiting</p>
+                {:then string}
+                    {#if $user}
+                    <ProfileInput placeholder="Pronouns" value={string} state={switchVal} />
+                    {:else}
+                        <p>sorry</p>
+                     {/if}   
+                {:catch error}
+	            <p style="color: red">{error.message}</p>
+                {/await}
             </h1>
         </div>
     
         <!-- Occupation -->
-        <div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
-            <h1 class=" text-3xl text-left uppercase">
-                cook
+        <div>
+            <h1>
+                {#await like}
+	            <p>...waiting</p>
+                {:then string}
+                    {#if $user}
+                    <ProfileInput placeholder="Pronouns" value={string} state={switchVal} />
+                    {:else}
+                        <p>sorry</p>
+                     {/if}   
+                {:catch error}
+	            <p style="color: red">{error.message}</p>
+                {/await}
             </h1>
         </div>
-      </div>
-    
+    </div>
     
       <!-- Row 2: image -->
       <div class="max-w-sm overflow-hidden align-middle row-auto border-8 border-hot-pink rounded-lg">
@@ -82,18 +103,23 @@
     
     
       <!-- Row 3: description -->
-      <div class="text-white uppercase ml-[10%] mr-[10%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
-        <h1 class=" text-2xl text-left uppercase">
-            SpongeBob SquarePants is the protagonist of the American animated television series of the same name. Voiced by Tom Kenny, he is characterized by his optimism and childlike attitude. SpongeBob is commonly seen hanging out with his friend Patrick Star, working at the Krusty Krab.
+      <div>
+        <h1>
+            {#await biography}
+            <p>...waiting</p>
+            {:then string}
+                {#if $user}
+                <ProfileInput type="text" placeholder="Bio" value={string} state={switchVal} />
+                {:else}
+                    <p>sorry</p>
+                 {/if}   
+            {:catch error}
+            <p style="color: red">{error.message}</p>
+            {/await}
         </h1>
     </div>
     </div>
-    
-    
-    <!-- Location -->
-    <div class="text-white uppercase mx-auto pt-0 pb-[0%] relative z-0 flex flex-col items-center justify-center">
-    </div>
-    
+
     
     <!-- logout -->
     <div class="text-white uppercase mx-auto pt-16 pb-[5%] relative z-0 flex flex-col items-center justify-center">
@@ -103,18 +129,5 @@
             </button>
         </a>
     </div>
-    
-    
-    <script lang="ts">
-        // validates if password is same as confirm password and if all fields are filled
-        function Validate() {  
-            location.href = '/profile';
-      }
-      
-    
-    document.getElementById("next").addEventListener("click", Validate);
-    </script>
-    
-</form>
 
 

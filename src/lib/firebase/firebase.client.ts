@@ -45,22 +45,93 @@ export const authStore = writable({
 })
 export const readHandlers = {
   readUserName: async () => {
-    const _uid = auth.currentUser?.uid;
+    setTimeout(() => {
+      console.log("why")
+    }, 2000);
+    if(auth.currentUser){console.log("hello")}
+    else{console.log("nothing works")}
+    let _uid = auth.currentUser?.uid
+    console.log("uid: " + _uid);
     let ret = ""
-    await get(ref(db, 'users/' + _uid)).then(snapshot => ret = snapshot.val())
-    console.log("ret 1 " + ret)
+    try {
+    await get(ref(db, '/users/' + _uid)).then(snapshot => ret = snapshot.val().username);
+    console.log("ret after change = " + ret);
+    }
+    catch(error){
+      console.log(error);
+    }
     return ret
   },
-  read: async () => {
-    let ret = await readHandlers.readUserName().then(w => console.log(w));
-    console.log("ret 2 " + ret)
+  readAge: async () => {
+    setTimeout(() => {
+      console.log("why")
+    }, 2000);
+    if(auth.currentUser){console.log("hello")}
+    else{console.log("nothing works")}
+    let _uid = auth.currentUser?.uid
+    console.log("uid: " + _uid);
+    let ret = ""
+    try {
+    await get(ref(db, '/users/' + _uid+'/vitals')).then(snapshot => ret = snapshot.val().age);
+    console.log("ret after change = " + ret);
+    }
+    catch(error){
+      console.log(error);
+    }
     return ret
   },
-  getProfile: async () => {
-    const _uid = auth.currentUser?.uid;
+  readPronouns: async () => {
+    setTimeout(() => {
+      console.log("why")
+    }, 2000);
+    if(auth.currentUser){console.log("hello")}
+    else{console.log("nothing works")}
+    let _uid = auth.currentUser?.uid
+    console.log("uid: " + _uid);
     let ret = ""
-    await get(ref(db, 'users/' + _uid)).then(snapshot => ret = snapshot.val())
-    console.log("ret 1 " + ret)
+    try {
+    await get(ref(db, '/users/' + _uid+'/vitals')).then(snapshot => ret = snapshot.val().pronouns);
+    console.log("ret after change = " + ret);
+    }
+    catch(error){
+      console.log(error);
+    }
+    return ret
+  },
+  readHobby: async () => {
+    setTimeout(() => {
+      console.log("why")
+    }, 2000);
+    if(auth.currentUser){console.log("hello")}
+    else{console.log("nothing works")}
+    let _uid = auth.currentUser?.uid
+    console.log("uid: " + _uid);
+    let ret = ""
+    try {
+    await get(ref(db, '/users/' + _uid+'/vitals')).then(snapshot => ret = snapshot.val().like);
+    console.log("ret after change = " + ret);
+    }
+    catch(error){
+      console.log(error);
+    }
+    return ret
+  },
+  readBio: async () => {
+    setTimeout(() => {
+      console.log("why")
+    }, 2000);
+    if(auth.currentUser){console.log("hello")}
+    else{console.log("nothing works")}
+    let _uid = auth.currentUser?.uid
+    console.log("uid: " + _uid);
+    let ret = ""
+    try {
+    await get(ref(db, '/users/' + _uid+'/vitals/biography')).then(snapshot => ret = snapshot.val().biography);
+    console.log("ret after change = " + ret);
+    }
+    catch(error){
+      console.log(error);
+    }
     return ret
   },
 }
@@ -68,7 +139,6 @@ export const authHandlers = {
   login: async (_email: string, _password: string) => {
     await signInWithEmailAndPassword(auth, _email, _password);
     console.log("done");
-    readHandlers.readUserName();
   },
   signup: async (_email: string, _password: string, _username: string) => {
     await createUserWithEmailAndPassword(auth, _email, _password);
@@ -127,21 +197,32 @@ export const authHandlers = {
       console.log(e)
     }
   },
-  setProfile: async (_bio:string, _likes:Array<string>, _pronoms:string ) => {
+  setVitals: async (fn:any, ln:any, _pronoms:any, _grade:any, _age:any, favoriteC:any, favoriteT:any) => {
     // Create a new post reference with an auto-generated id
     const db = getDatabase();
     const postListRef = ref(db, 'users/'+auth.currentUser?.uid+'/vitals');
     set(postListRef, {
-      bio : _bio,
-      likes : _likes,
-      pronouns : _pronoms
+      pronouns : _pronoms,
+      grade : _grade,
+      age : _age,
+      like : favoriteC,
+      teach : favoriteT,
+      first_name : fn,
+      last_name : ln
+    });
+  },
+  setBio: async (bio:string) => {
+    const db = getDatabase();
+    const postListRef = ref(db, 'users/'+auth.currentUser?.uid+'/vitals/biography');
+    set(postListRef, {
+      biography : bio
     });
   }
 }
 
 export function writePersonalityData(userId: string, personalityType: string) {
   const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
+  set(ref(db, 'users/' + userId + "/personality"), {
     personality_type: personalityType,
   });
 }

@@ -17,7 +17,7 @@
 	<InputBox placeholder="email..." bind:value={email}/>
 	<InputBox placeholder="username..." bind:value={username}/>
 	<InputBox placeholder="password..." bind:value={pwd}/>
-	<a href="/profile">
+	<a href="/login/signup/create">
 		<button on:click={() => authHandlers.signup(email, pwd, username)} class="bg-black text-hot-pink rounded-lg w-1/6 h-12 uppercase text-2xl font-semibold w-24">
 			Next
 		</button>
