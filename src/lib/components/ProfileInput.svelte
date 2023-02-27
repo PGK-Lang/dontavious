@@ -7,24 +7,15 @@
 
 </script>
 
-
+{#if state}
 <input type="text"
-    disabled={state}
 	placeholder={placeholder} autocomplete="off" required
+	class="text-black ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left"
 	bind:value={value}>
-
-    <style> 
-        input {
-            /*Generic Style*/
-            background: pink;
-            color: black;
-            font-size: large;
-            text-transform: uppercase;
-            
-        }
-        /*only occurs if the input is disabled*/
-        input:disabled {
-            background: black;
-            
-        }
-    </style>
+{:else}
+<div class="text-white uppercase ml-[15%] pt-[1%] pb-[2%] px-auto relative z-0 flex flex-col items-left justify-left">
+	<h1 class=" text-3xl text-left uppercase">
+		{value}
+	</h1>
+</div>
+{/if}
