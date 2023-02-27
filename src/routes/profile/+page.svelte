@@ -11,9 +11,6 @@
     let like = readHandlers.readHobby();
     let biography = readHandlers.readBio();
     let switchVal:boolean;
-    let sumero = (str) => {
-        return str;
-    }
 </script>
 
 <!-- Edit Page -->
@@ -21,7 +18,6 @@
 
 <div class="text-white uppercase mx-auto pt-12 relative z-0 flex flex-col items-right justify-right ml-auto mr-[5%]">
     <Switch bind:value={switchVal} label="Edit Page" design="inner" />
-    <p> {sumero(switchVal)}</p>
 </div>
 
 
@@ -127,6 +123,7 @@
             <button on:click = {() => authHandlers.logout()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
                 <h1 class=" text-3xl text-center">logout</h1>
             </button>
+            <button on:click={() => readHandlers.getTree()}>Why</button>
         </a>
     </div>
 

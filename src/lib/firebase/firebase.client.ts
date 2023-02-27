@@ -134,6 +134,29 @@ export const readHandlers = {
     }
     return ret
   },
+
+  getTree: async () => 
+  {
+    setTimeout(() => {
+      console.log("why")
+    }, 2000);
+    if(auth.currentUser){console.log("hello")}
+    else{console.log("nothing works")}
+    let _uid = auth.currentUser?.uid
+    console.log("uid: " + _uid);
+    let ret = ""
+    try {
+    await get(ref(db, '/users/')).then(snapshot => snapshot.forEach(function(snapshot){
+      console.log(snapshot.val().username)
+    }));
+    console.log("ret after change = " + ret);
+    }
+    catch(error){
+      console.log(error);
+    }
+    return ret
+  }
+
 }
 export const authHandlers = {
   login: async (_email: string, _password: string) => {
