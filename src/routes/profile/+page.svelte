@@ -1,16 +1,26 @@
 <script lang=ts>
-    import { auth, db, authHandlers, readHandlers } from "$lib/firebase/firebase.client";
+    import { auth, db, authHandlers, readHandlers, updateHandlers } from "$lib/firebase/firebase.client";
     import { updateCurrentUser } from "firebase/auth";
     import { snapshotEqual } from "firebase/firestore";
     import { FirebaseApp, userStore } from "sveltefire";
     import Switch from "../../lib/components/Switch.svelte"
     import ProfileInput from "../../lib/components/ProfileInput.svelte"
+    import type { stringify } from "postcss";
     const user = userStore(auth);
-    let age = readHandlers.readAge()
-    let pronouns = readHandlers.readPronouns();
-    let like = readHandlers.readHobby();
-    let biography = readHandlers.readBio();
+    let age:Promise<string>;
+    let pronouns:Promise<string>;
+    let like:Promise<string>;
+    let biography:Promise<string>;
+    
+    setTimeout(() => {
+        age = readHandlers.readAge()
+        pronouns = readHandlers.readPronouns();
+        like = readHandlers.readHobby();
+        biography = readHandlers.readBio(); 
+    }, 1000);
+    
     let switchVal:boolean;
+    let yay = "";
 </script>
 
 <!-- Edit Page -->
@@ -18,6 +28,9 @@
 
 <div class="text-white uppercase mx-auto pt-12 relative z-0 flex flex-col items-right justify-right ml-auto mr-[5%]">
     <Switch bind:value={switchVal} label="Edit Page" design="inner" />
+    {#if switchVal}
+    <button on:click={() => console.log(yay)} class="border-white text-right">Click to Save!</button>
+    {/if}
 </div>
 
 
@@ -105,7 +118,7 @@
             <p>...waiting</p>
             {:then string}
                 {#if $user}
-                <ProfileInput type="text" placeholder="Bio" value={string} state={switchVal} />
+                <ProfileInput type="text" placeholder="Bio" value={string} state={switchVal}/>
                 {:else}
                     <p>sorry</p>
                  {/if}   
@@ -123,8 +136,6 @@
             <button on:click = {() => authHandlers.logout()} id="login" class="bg-hot-pink hover:bg-hot-pink-hover text-white py-2 rounded-full align-center px-20">
                 <h1 class=" text-3xl text-center">logout</h1>
             </button>
-            <button on:click={() => readHandlers.getTree()}>Why</button>
         </a>
     </div>
-
 

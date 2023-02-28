@@ -1,9 +1,10 @@
 import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
 import { Firestore, getFirestore, collection, doc } from 'firebase/firestore';
 import { writable } from "svelte/store";
-import { getDatabase, set, ref, get, update, push } from 'firebase/database';
+import { getDatabase, set, ref, get, update, push, DataSnapshot, remove } from 'firebase/database';
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
+import type { Snapshot } from '../../routes/$types';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -135,11 +136,8 @@ export const readHandlers = {
     return ret
   },
 
-  getTree: async () => 
+  getTree: async () =>  // Get the entire working tree
   {
-    setTimeout(() => {
-      console.log("why")
-    }, 2000);
     if(auth.currentUser){console.log("hello")}
     else{console.log("nothing works")}
     let _uid = auth.currentUser?.uid
@@ -155,15 +153,35 @@ export const readHandlers = {
       console.log(error);
     }
     return ret
-  }
+  },
 
+  withinAgeRange: (age1, age2) => { // Within the minimum/maximum dating age requirements
+    let one = (parseInt(age1)/2)+7 >= parseInt(age2)
+    let two = (parseInt(age1)-7)*2 <= parseInt(age2)
+    if (one && two){
+      return true;
+    }
+    return false;
+  },
+
+  returnWords: (bio1, bio2) => { // Returns the words in a string
+    
+  },
+  seeCap: (u1:DataSnapshot, u2:DataSnapshot) => { // Get the points value
+    let points = 0;
+    if (u1.val().like === u2.val().like){
+      points += 5;
+    }
+
+    return points;
+  }
 }
 export const authHandlers = {
-  login: async (_email: string, _password: string) => {
+  login: async (_email: string, _password: string) => { // Logs in
     await signInWithEmailAndPassword(auth, _email, _password);
     console.log("done");
   },
-  signup: async (_email: string, _password: string, _username: string) => {
+  signup: async (_email: string, _password: string, _username: string) => { // Signs in 
     await createUserWithEmailAndPassword(auth, _email, _password);
     authHandlers.updateDisplayName(_username);
     try {
@@ -242,7 +260,64 @@ export const authHandlers = {
     });
   }
 }
+export const updateHandlers = {
+  updateUsername : async (name:string) => {
+    await authHandlers.updateDisplayName(name);
+    set(ref(db, 'users/' + auth.currentUser?.uid + "/username"), {
+      username : name,
+    });
+  },
+  updateAge : (nage:string) => {
+    set(ref(db, 'users/' + auth.currentUser?.uid + "/vitals/age"), {
+      age : nage,
+    });
+  },
+  updatePronouns : (nnouns:string) => {
+    set(ref(db, 'users/' + auth.currentUser?.uid + "/vitals/pronouns"), {
+      pronouns : nnouns,
+    });
+  },
+  updateHobby : (nteach:string) => {
+    set(ref(db, 'users/' + auth.currentUser?.uid + "/vitals/like"), {
+      like : nteach,
+    });
+  },
+  updateName : (nname:string) => {
+    let names = nname.split(" ");
+    if (names.length < 2){
+      return
+    }
+    set(ref(db, 'users/' + auth.currentUser?.uid + "/vitals/first_name"), {
+      first_name : names[0],
+    });
+    set(ref(db, 'users/' + auth.currentUser?.uid + "/vitals/last_name"), {
+      first_name : names[-1],
+    });
+    if (names.length > 2){
+      let middle = names.slice(1, -1).join(" ");
+      set(ref(db, 'users/' + auth.currentUser?.uid + "/vitals/middle_name"), {
+        middle_name : middle,
+      });
+    }
+    else {
+      try {
+        remove(ref(db, 'users/' + auth.currentUser?.uid + "/vitals/middle_name"));
+      }
+      catch(error) {
+        console.log(error)
+      }
+    }
+  }
+}
 
+export async function UpdateEverything (name:string, age:string, pn:string, like:string){
+    await updateHandlers.updateUsername(name);
+    updateHandlers.updateAge(age);
+    updateHandlers.updatePronouns(pn);
+    updateHandlers.updateHobby(like);
+    console.log("update complete");
+
+}
 export function writePersonalityData(userId: string, personalityType: string) {
   const db = getDatabase();
   set(ref(db, 'users/' + userId + "/personality"), {

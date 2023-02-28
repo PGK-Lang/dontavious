@@ -1,9 +1,9 @@
 <script>
     export let label = "";
     export let design = 'inner label'
-    export let options = [];
-		export let fontSize = 16;
-	  export let value = false;
+	export let fontSize = 16;
+	export let value = false;
+    
 
     let checked = false;
 
@@ -18,6 +18,10 @@
         checked = state === 'true' ? false : true
 
         value = checked === true ? true : false
+        
+        if (!state) {
+            console.log("x")
+        }
     }
 	
 	  const slugify = (str = "") =>
